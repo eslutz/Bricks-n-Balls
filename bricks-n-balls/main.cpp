@@ -19,6 +19,9 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+// Image loading Utility functions
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
 using namespace std;
 
@@ -376,6 +379,11 @@ int main(void)
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
+	GLFWimage icon[1]{};
+	icon[0].pixels = stbi_load("bricks-n-balls-icon.png", &icon[0].width, &icon[0].height, 0, 4);
+	glfwSetWindowIcon(window, 1, icon);
+	stbi_image_free(icon);
+
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 
